@@ -1,3 +1,20 @@
 .folder-list-container {
-  list-style: none;
+    list-style: none;
+}
+
+.folder-list-container li {
+    cursor: pointer;
+}
+
+.folder-list-container li::before {
+    content: '';
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-size: 20px;
+    background-image: url('../../assets/images/folder.svg');
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    background-position: center center;
+    vertical-align: middle;
 }

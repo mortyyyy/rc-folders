@@ -5,7 +5,7 @@ export const FolderList = (props) => {
     const {folders, getSubFolders} = props;
 
     return (
-        <ul>
+        <ul className="folder-list-container">
             {(folders || []).map((folder) => (
                 <FolderListItem folder={folder} getSubFolders={getSubFolders}/>
             ))}
