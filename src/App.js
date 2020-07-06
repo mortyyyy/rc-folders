@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useCallback, useMemo} from 'react';
+import FolderList from "./components/FolderList";
+import {FOLDERS_MOCK} from "./foldersMock";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const rootFolders = useMemo(
+        () => {
+            return FOLDERS_MOCK.filter((folder) => folder.root);
+        }, []
+    );
+
+    const getSubFolders = useCallback((folder) => {
+        if (!folder) {
+            return [];
+        }
+        return FOLDERS_MOCK.filter((f) => folder.parent === f.id);
+    }, [FOLDERS_MOCK]);
+
+    return (
+        <div className="App">
+            <FolderList folders={rootFolders} getSubFolders={getSubFolders}/>
+        </div>
+    );
 }
 
 export default App;
